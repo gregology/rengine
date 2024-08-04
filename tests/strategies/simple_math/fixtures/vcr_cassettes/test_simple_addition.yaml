@@ -1,0 +1,144 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "## About you\n\nYour name is
+      Kate and you are an experienced mathematician and python developer. \nYou are
+      meticulous and detail-oriented.\nYou take pride in your work and always strive
+      for perfection.\n\n## Task\n\nYour task is to translate text mathematical expressions
+      and operations into Python functions.\n\nHere is a list of the Python libraries
+      you can use:\n - `math`\n - `numpy`\n - `scipy`\n - `datetime`\n - `decimal`\n
+      - `fractions`\n\nDo not include any import statements in your Python functions
+      as all required packages will all be pre-imported in the execution environment.\nWhen
+      referencing functions or classes from libraries, use the full library name.
+      For example `math.sqrt` instead of `sqrt` or `numpy.array` instead of `array`.\nAlways
+      name the function `formula()`.\n\nNote: Import statements for these libraries
+      should not be included in your function definitions, as they will be pre-imported
+      in the execution environment.\n\nEnsure that these Python functions;\n - include
+      appropriate type hints\n - do not contain documenation strings\n - return either
+      an integer, float, boolean, string, or fraction\n - function responses that
+      may be a repeating decimal should be returned as a fraction\n - accept typed
+      input parameters as arguments\n - accept default arguments where necessary\n
+      - require inputs for every input used in the function\n\nYou will return a JSON
+      object with the following keys:\n - `function` which will be a string representing
+      the Python function to answer the question.\n - `function_inputs` which will
+      be a dictionary of the inputs to the function and their values from the question.\n
+      - `response_type` which will represent the type of response to the question.
+      It can be either \"number\", \"bool\", \"string, or \"fraction\".\n - `confidence`
+      which will be a float between 0 and 1 representing your confidence in your function.\n
+      - `assumptions` which will be a list of strings representing any assumptions
+      you made when creating the function.\n\n## Examples\n\n### Number example\n\n```\nAdd
+      5 and 3\n```\n\nshould return something like\n\n```json\n{\n    \"function\":
+      \"def formula(a: float, b: float) -> float:\\n    return a + b\",\n    \"function_inputs\":
+      {\n        \"a\": 5,\n        \"b\": 3\n    },\n    \"response_type\": \"number\",\n    \"confidence\":
+      1.0,\n    \"assumptions\": [\n        \"The numbers are base 10.\"\n    ]\n}\n```\n\n###
+      Boolean example\n\n```\nIs 5 squared greater than the square root of 626?\n```\n\nshould
+      return something like\n\n```json\n{\n    \"function\": \"formula(a: float, b:
+      float) -> bool:\\n    return a**2 > b**0.5\",\n    \"function_inputs\": {\n        \"a\":
+      5,\n        \"b\": 626\n    },\n    \"response_type\": \"bool\",\n    \"confidence\":
+      1.0,\n    \"assumptions\": [\n        \"The numbers are base 10.\"\n    ]\n}\n```\n\n###
+      String example\n\n```\nWhat is the larger, 3 cubed or pi squared?\n```\n\nshould
+      return something like\n\n```json\n{\n    \"function\": \"def formula(a: float,
+      b: float, a_text: str, b_text: str) -> str:\\n    cubed_number = a ** 3\\n    squared_number
+      = b ** 2\\n    \\n    if cubed_number > squared_number:\\n        return f\\\"{a_text}
+      is larger than {b_text}.\\\"\\n    elif squared_number > cubed_number:\\n        return
+      f\\\"{b_text} is larger than {a_text}.\\\"\\n    else:\\n        return f\\\"{b_text}
+      are {a_text} are equal.\\\"\"\n    \"function_inputs\": {\n        \"a\": 3,\n        \"b\":
+      3.141592653589793,\n        \"a_text\": \"3 cubed\",\n        \"b_text\": \"pi
+      squared\"\n    },\n    \"response_type\": \"string\",\n    \"confidence\": 0.95,\n    \"assumptions\":
+      [\n        \"The numbers are base 10.\",\n        \"Using 3.141592653589793
+      as an approximate for pi is suitable for this comparison.\"\n    ]\n}\n```\n\n###
+      Fraction example\n\n```\nWhat is three fifths divided by seven thirteenths?\n```\n\nshould
+      return something like\n\n```json\n{\n    \"function\": \"def formula(numerator_a:
+      int, denominator_a: int, numerator_b: int, denominator_b: int) -> fractions.Fraction:\\n    fraction_a
+      = fractions.Fraction(numerator_a, denominator_a)\\n    fraction_b = fractions.Fraction(numerator_b,
+      denominator_b)\\n    return fraction_a / fraction_b\n\"\n    \"function_inputs\":
+      {\n        \"numerator_a\": 3,\n        \"denominator_a\": 5,\n        \"numerator_b\":
+      7,\n        \"denominator_b\": 13\n    },\n    \"response_type\": \"string\",\n    \"confidence\":
+      0.9,\n    \"assumptions\": [\n        \"The numbers are base 10.\"\n    ]\n}\n```\n\n###
+      Example requiring assumptions\n\n```\nJohn is driving Mary to the beach. John
+      has 9 fingers. How many fingers are in the car?\n```\n\nshould return something
+      like\n\n```json\n{\n    \"function\": \"def formula(johns_fingers: int, marys_fingers:
+      int = 10) -> int:\\n    return johns_fingers + marys_fingers\"\n    \"function_inputs\":
+      {\n        \"johns_fingers\": 9,\n        \"marys_fingers\": 10\n    },\n    \"response_type\":
+      \"string\",\n    \"confidence\": 0.9,\n    \"assumptions\": [\n        \"The
+      numbers are base 10.\",\n        \"Mary is a human.\",\n        \"Mary has 10
+      fingers.\",\n        \"There are no other people in the car.\",\n        \"The
+      question is only asking about human fingers.\",\n        \"There are no other
+      fingers in the car.\"\n    ]\n}\n```\n\n## Task\n\nCreate a Python function
+      to answer the following block of mathematical text.\n\n```\nWhat is 2 + 2?\n```"}],
+      "model": "gpt-4o", "format": "json"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '5502'
+      content-type:
+      - application/json
+      user-agent:
+      - OpenAI/Python 1.37.2
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.37.2
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.1
+    method: POST
+    uri: REDACTED
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAwAAAP//XFLBjpswEL3zFSOfWhUiYJNNwqGnVr1UK1XqpV1WYGAgTmBseYzabcS/
+        V4ZskvZiS+/Ne/M843MAIFQjMhD1Qbp6MH2055+fPtvTkzta7tSfodv9On39dqrS45enHyL0Cl0d
+        sXZvqlWtB9OjU5oWurYoHXrXZJum230a7x9nYtAN9l7WGRetdZTG6TqKN1HycBEetKqRRQbPAQDA
+        eT59RGrwt8ggDt+QAZllhyK7FgEIq3uPCMms2ElyIryRtSaHNKcuy/LImnI65+S5XLQj1f4Bucgg
+        Fw220Go7jL18JzNQ5EKo5vs9RB/9neWL0qIbLYGED1DlIvzfrlBkRsfe9dJq4aVH0vAeqmZoQaar
+        kUU2mhgL92pwCUfjUKG9a1ZralWDVM8FySq+MpJ5HIwPMkd4vu/3/YCwWDFIi1BJRkjiVS6Wqpec
+        ppzKshSXEU7X2fe6M1ZXfk809v0VbxUpPhQWJWvyc2anzSKfAoCXecfjP2sTxurBuMLpE5I3TB7i
+        7WIobt/qRu92F9JpJ/t72X4TXDIKfmWHQ9Eq6tAaq5alt6ZYY1qljdwkOxFMwV8AAAD//wMApaIq
+        6v0CAAA=
+    headers:
+      CF-RAY:
+      - 8ae0f9307984ab18-YYZ
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 04 Aug 2024 19:32:26 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=Qagl9WARAuPysv6CDXisvQ20S6x5GDQxk0KaYQXkNvwGhgz2D9l8jZKsGBqPVdMIfNX8gHlZ%2BYOYTaFYOKVJ7P6c3ktc309CS4VmUGDH2WcX9%2BSmt%2FoGkFEIUbngECAjnRE5MyJNK9HQ"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Server-Timing:
+      - cfRequestDuration;dur=120.999813
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Request-Id:
+      - req_50531c58c84846b117dc3a9d80b5bf1f
+      alt-svc:
+      - h3=":443"; ma=86400
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -1,0 +1,390 @@
+interactions:
+- request:
+    body: '{"messages": [{"role": "user", "content": "## About you\n\nYour name is
+      Kate and you are an experienced mathematician and python developer. \nYou are
+      meticulous and detail-oriented.\nYou take pride in your work and always strive
+      for perfection.\n\n## Task\n\nYour task is to translate text mathematical expressions
+      and operations into Python functions.\n\nHere is a list of the Python libraries
+      you can use:\n - `math`\n - `numpy`\n - `scipy`\n - `datetime`\n - `decimal`\n
+      - `fractions`\n\nDo not include any import statements in your Python functions
+      as all required packages will all be pre-imported in the execution environment.\nWhen
+      referencing functions or classes from libraries, use the full library name.
+      For example `math.sqrt` instead of `sqrt` or `numpy.array` instead of `array`.\nAlways
+      name the function `formula()`.\n\nNote: Import statements for these libraries
+      should not be included in your function definitions, as they will be pre-imported
+      in the execution environment.\n\nEnsure that these Python functions;\n - include
+      appropriate type hints\n - do not contain documenation strings\n - return either
+      an integer, float, boolean, string, or fraction\n - function responses that
+      may be a repeating decimal should be returned as a fraction\n - accept typed
+      input parameters as arguments\n - accept default arguments where necessary\n
+      - require inputs for every input used in the function\n\nYou will return a JSON
+      object with the following keys:\n - `function` which will be a string representing
+      the Python function to answer the question.\n - `function_inputs` which will
+      be a dictionary of the inputs to the function and their values from the question.\n
+      - `response_type` which will represent the type of response to the question.
+      It can be either \"number\", \"bool\", \"string, or \"fraction\".\n - `confidence`
+      which will be a float between 0 and 1 representing your confidence in your function.\n
+      - `assumptions` which will be a list of strings representing any assumptions
+      you made when creating the function.\n\n## Examples\n\n### Number example\n\n```\nAdd
+      5 and 3\n```\n\nshould return something like\n\n```json\n{\n    \"function\":
+      \"def formula(a: float, b: float) -> float:\\n    return a + b\",\n    \"function_inputs\":
+      {\n        \"a\": 5,\n        \"b\": 3\n    },\n    \"response_type\": \"number\",\n    \"confidence\":
+      1.0,\n    \"assumptions\": [\n        \"The numbers are base 10.\"\n    ]\n}\n```\n\n###
+      Boolean example\n\n```\nIs 5 squared greater than the square root of 626?\n```\n\nshould
+      return something like\n\n```json\n{\n    \"function\": \"formula(a: float, b:
+      float) -> bool:\\n    return a**2 > b**0.5\",\n    \"function_inputs\": {\n        \"a\":
+      5,\n        \"b\": 626\n    },\n    \"response_type\": \"bool\",\n    \"confidence\":
+      1.0,\n    \"assumptions\": [\n        \"The numbers are base 10.\"\n    ]\n}\n```\n\n###
+      String example\n\n```\nWhat is the larger, 3 cubed or pi squared?\n```\n\nshould
+      return something like\n\n```json\n{\n    \"function\": \"def formula(a: float,
+      b: float, a_text: str, b_text: str) -> str:\\n    cubed_number = a ** 3\\n    squared_number
+      = b ** 2\\n    \\n    if cubed_number > squared_number:\\n        return f\\\"{a_text}
+      is larger than {b_text}.\\\"\\n    elif squared_number > cubed_number:\\n        return
+      f\\\"{b_text} is larger than {a_text}.\\\"\\n    else:\\n        return f\\\"{b_text}
+      are {a_text} are equal.\\\"\"\n    \"function_inputs\": {\n        \"a\": 3,\n        \"b\":
+      3.141592653589793,\n        \"a_text\": \"3 cubed\",\n        \"b_text\": \"pi
+      squared\"\n    },\n    \"response_type\": \"string\",\n    \"confidence\": 0.95,\n    \"assumptions\":
+      [\n        \"The numbers are base 10.\",\n        \"Using 3.141592653589793
+      as an approximate for pi is suitable for this comparison.\"\n    ]\n}\n```\n\n###
+      Fraction example\n\n```\nWhat is three fifths divided by seven thirteenths?\n```\n\nshould
+      return something like\n\n```json\n{\n    \"function\": \"def formula(numerator_a:
+      int, denominator_a: int, numerator_b: int, denominator_b: int) -> fractions.Fraction:\\n    fraction_a
+      = fractions.Fraction(numerator_a, denominator_a)\\n    fraction_b = fractions.Fraction(numerator_b,
+      denominator_b)\\n    return fraction_a / fraction_b\n\"\n    \"function_inputs\":
+      {\n        \"numerator_a\": 3,\n        \"denominator_a\": 5,\n        \"numerator_b\":
+      7,\n        \"denominator_b\": 13\n    },\n    \"response_type\": \"string\",\n    \"confidence\":
+      0.9,\n    \"assumptions\": [\n        \"The numbers are base 10.\"\n    ]\n}\n```\n\n###
+      Example requiring assumptions\n\n```\nJohn is driving Mary to the beach. John
+      has 9 fingers. How many fingers are in the car?\n```\n\nshould return something
+      like\n\n```json\n{\n    \"function\": \"def formula(johns_fingers: int, marys_fingers:
+      int = 10) -> int:\\n    return johns_fingers + marys_fingers\"\n    \"function_inputs\":
+      {\n        \"johns_fingers\": 9,\n        \"marys_fingers\": 10\n    },\n    \"response_type\":
+      \"string\",\n    \"confidence\": 0.9,\n    \"assumptions\": [\n        \"The
+      numbers are base 10.\",\n        \"Mary is a human.\",\n        \"Mary has 10
+      fingers.\",\n        \"There are no other people in the car.\",\n        \"The
+      question is only asking about human fingers.\",\n        \"There are no other
+      fingers in the car.\"\n    ]\n}\n```\n\n## Task\n\nCreate a Python function
+      to answer the following block of mathematical text.\n\n```\nJohn has a pet octopus.
+      The octopus has lost 2 legs. John and the octopus are in an elevator. How many
+      legs are in the elevator?\n```"}], "model": "gpt-4o", "format": "json"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '5616'
+      content-type:
+      - application/json
+      user-agent:
+      - OpenAI/Python 1.37.2
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.37.2
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.1
+    method: POST
+    uri: REDACTED
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA3RU22rbQBB991cM+9RSO8hS0jiGFEJLW0ovtOShNAryWh5bm6xmtjurEBP872Ul
+        W87FfRFizmXPLDp6GAAos1BTUGWlQ1k7OzqTPx++uovxr/fZ7aePP9bf7903+fr7561JLys1jAqe
+        32AZdqqjkmtnMRimDi496oDRdXyapqdn6TjJWqDmBdooW7kwOuZRmqTHo+RkNM62wopNiaKmcDUA
+        AHhonzEiLfBeTSEZ7iY1iugVqmlPAlCebZwoLWIkaApquAdLpoDUpp7NZjfClNNDThHL1bKhMi6Q
+        qynkaoFLWLKvG6tf3XBFhcWVTMFQgHNIh8BlYNdIETho+wSc7EHLEp4KX8PoXXyf5t2xO6bHWhsy
+        tGrpcH7AH0YvfbcuHkPjCfqc8OY/xrkaPl+3MOSaIHHr7VV0eG8WkXT4GHqZLXImBzn7qNGmY2z6
+        EB7FMQkWYe2wu3hq6jn6R0FLpqVZIJUtITk6O+khLdLULm7R2l89DnBZIXReAtojzLUgjJOj3rmj
+        feGKwAhoqJpa03P4cxwKVPoOIYW4x3PGBe3uGsLamVJbu4ZKC0wO0i8r9NgGIgYOFXpwyM4isAdN
+        ptZWwBCECgEt3unA/oAH/G1Q4uLAZNeg5Vbi5wolNxQMrXZnd7LrnDY5zWYzte3Cpi+R5ZXzPI+F
+        o8bafr40ZKQqPGphioWRwK6TbwYA121Zmyf9U85z7UIR+BYpGo6zLOsM1f7/sIfT5HSLdh/SXndy
+        nAy2IZWsJWBdLA2t0DtvuvouXZGVi8n8bVpmczXYDP4BAAD//wMA1MGGJMcEAAA=
+    headers:
+      CF-RAY:
+      - 8ae0f9317a4fab18-YYZ
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 04 Aug 2024 19:32:26 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=qVKmgV%2BY%2BtpDG503KQSB6tWs%2BzREXLuPXgaT0GSyvSjZ1oHncUcB7npxiEu3Kp%2FQO25eouGHl196tPG4GRQ6tlR3lFfXnvRu9FDwXxA4rnmdQIXQ%2F4lgzZlaDVJps1UMpGio7yadXvmS"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Server-Timing:
+      - cfRequestDuration;dur=135.999918
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Request-Id:
+      - req_45b3aa6b1137ad3efe85af579b3b21ea
+      alt-svc:
+      - h3=":443"; ma=86400
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "\n        Is the following assumption\n        \n        \"John
+      has 2 legs\"\n\n        in this list of assumptions or apparent from multiple
+      assumptions?\n\n        [''The numbers are base 10.'', ''John is a human.'',
+      ''Humans have 2 legs.'', ''An octopus typically has 8 legs.'', ''There are no
+      other people or animals in the elevator.'', ''The question only asks for counting
+      legs.'']\n\n        Respond with a JSON object that contains a single boolean
+      value called `exists`. For example;\n        `{\"exists\": true}`\n        "}],
+      "model": "gpt-4o-mini", "format": "json"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '609'
+      content-type:
+      - application/json
+      user-agent:
+      - OpenAI/Python 1.37.2
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.37.2
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.1
+    method: POST
+    uri: REDACTED
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAwAAAP//VJDNboMwEITvPIW151ABIaFwq1QpahWpUY8tFTiwEKf+k+1IqSLevTKQ
+        pL3sYcbf7KwvASHAWigINAfqGqF5mNuPzXu0e6a8Wy/f+A7P4jV72r5sebpJYeEJtT9i467UQ6OE
+        5uiYkpPdGKQOfWqcJUmWJ0m+Gg2hWuQe67ULUxUKJlmYREkaRlkYP870QbEGLRTkMyCEkMs4fU/Z
+        4hkKEi2uikBraY9Q3B4RAkZxrwC1lllHpYPF3WyUdCjH6nVdH62SpbyUgGdmnS2hIM6ccChlXdcw
+        U8NtHVe9Nmrvq8kT5ze9Y5LZQ2WQWiV9tHVKT/gQEPI1nnX61xS0UUK7yqlvlD4wjtdTHtx/8+7m
+        s+eUo/wPlKyCuSDYH+tQVB2TPRpt2HRkp6uoi5Zt2kWIEAzBLwAAAP//AwAkyebN8gEAAA==
+    headers:
+      CF-RAY:
+      - 8ae0f9327adaab18-YYZ
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 04 Aug 2024 19:32:26 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=XIMVz5gOAcKjiukIdACiJtFYoXc8FVC6VmhY5fETbe%2FZ4vJHBGa8WF0YYhw1SlJ51eqtpgAP%2BpmgQKR%2FhWy%2Fi8EeJSRLZNeEaMw0drokUFIYIPC4snuaFx%2F%2BesDkkgn4pwVTIBuuSiPv"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Server-Timing:
+      - cfRequestDuration;dur=143.999815
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Request-Id:
+      - req_cbdba469f916df1b2a74b2c4e5ed465f
+      alt-svc:
+      - h3=":443"; ma=86400
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "\n        Is the following assumption\n        \n        \"The
+      octopus originally had 8 legs\"\n\n        in this list of assumptions or apparent
+      from multiple assumptions?\n\n        [''The numbers are base 10.'', ''John
+      is a human.'', ''Humans have 2 legs.'', ''An octopus typically has 8 legs.'',
+      ''There are no other people or animals in the elevator.'', ''The question only
+      asks for counting legs.'']\n\n        Respond with a JSON object that contains
+      a single boolean value called `exists`. For example;\n        `{\"exists\":
+      true}`\n        "}], "model": "gpt-4o-mini", "format": "json"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '627'
+      content-type:
+      - application/json
+      user-agent:
+      - OpenAI/Python 1.37.2
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.37.2
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.1
+    method: POST
+    uri: REDACTED
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA1SQzW6DMBCE7zyFtedQBZSWwK2Hqg8QqYeWCgxZiBPjdfGmJYp498qQn/ayhxl/
+        s7M+B0KA2kImoN5Jrjurw9S9v24Goi9zsPvmLXlJT2Sb759keN48wsITVO2x5iv1UFNnNbIiM9t1
+        j5LRp0ZJHCdpHKdPk9HRFrXHWsvhisJOGRXGy3gVLpMwWl/oHakaHWTiIxBCiPM0fU+zxQEysVxc
+        lQ6dky1CdnskBPSkvQLSOeVYGobF3azJMJqpelmWe0cmN+cccFCOXQ6Z4P6IY27KsoQLNd7WaWpt
+        T5WvZo5a3/RGGeV2RY/SkfHRjsnO+BgI8TmddfzXFGxPneWC6YDGB0ZROufB/Tfv7tVjYqn/QPE6
+        uBQEd3KMXdEo02JvezUf2dgirZayahpcRxCMwS8AAAD//wMAC3Ed9vIBAAA=
+    headers:
+      CF-RAY:
+      - 8ae0f9338b6fab18-YYZ
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 04 Aug 2024 19:32:26 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=5zfqg%2B%2Bo7sEgoa6%2BGiIeiY2fbSKI5QqcVrKOuVQWoH9MNCptgBVTeCm0P6f1O1NqbrhmVekXf3DnseS2ce3k87Kks7wIO9M3%2BEE%2BayoI1OTWRxK%2FDcYCxfWBGHNLNS86mAt%2FyeguyPLO"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Server-Timing:
+      - cfRequestDuration;dur=158.999920
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Request-Id:
+      - req_c64c06a1df36cdfe1fbdc6e083aed130
+      alt-svc:
+      - h3=":443"; ma=86400
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"role": "user", "content": "\n        Is the following assumption\n        \n        \"There
+      is no one else in the elevator\"\n\n        in this list of assumptions or apparent
+      from multiple assumptions?\n\n        [''The numbers are base 10.'', ''John
+      is a human.'', ''Humans have 2 legs.'', ''An octopus typically has 8 legs.'',
+      ''There are no other people or animals in the elevator.'', ''The question only
+      asks for counting legs.'']\n\n        Respond with a JSON object that contains
+      a single boolean value called `exists`. For example;\n        `{\"exists\":
+      true}`\n        "}], "model": "gpt-4o-mini", "format": "json"}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '630'
+      content-type:
+      - application/json
+      user-agent:
+      - OpenAI/Python 1.37.2
+      x-stainless-arch:
+      - arm64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - MacOS
+      x-stainless-package-version:
+      - 1.37.2
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.1
+    method: POST
+    uri: REDACTED
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA1SQvXKDMBCEe55Cc7XJgMYTGzpXKVPETRIyIPCBZQtJI50TEg/vnhH4J2mu2NW3
+        t6dzxBjIHeQMmr2gprcqzvzb00tL2+3x8+eYHL4Ht9tkcvh63TxrDotAmPqADV2ph8b0ViFJo2e7
+        cSgIQ2q64nyVcZ49TkZvdqgC1lmKlybupZYxT/gyTlZxur7QeyMb9JCz94gxxs7TDD31DgfIWbK4
+        Kj16LzqE/PaIMXBGBQWE99KT0ASLu9kYTain6lVVHbzRhT4XgIP05AvIGbkTjoWuqgou1Hhbp0xn
+        nalDNX1S6qa3Uku/Lx0Kb3SI9mTsjI8RYx/TWad/TcE601sqyRxRh8A0zeY8uP/m3b16ZEioPxBf
+        R5eC4L89YV+2UnforJPzka0tszoRddviOoVojH4BAAD//wMAvwdLPvIBAAA=
+    headers:
+      CF-RAY:
+      - 8ae0f934bc20ab18-YYZ
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 04 Aug 2024 19:32:27 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=JVutmo%2FxFKC2DQ%2BJxD2Y5obJ62PngU4SdNFaTwFpBOwRE0BuTtDnDwSEuM4b88chItlFzOYteHf%2FSRcruWmzdidUFGKYjp3B8aNcLZgEQ%2Fx9MCSPbLy4lartWFbTp7BJadTkIjaz%2FoMu"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Server-Timing:
+      - cfRequestDuration;dur=152.999878
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Request-Id:
+      - req_f171db6fab6f3216c2a9b8919c5d7657
+      alt-svc:
+      - h3=":443"; ma=86400
+    status:
+      code: 200
+      message: OK
+version: 1
