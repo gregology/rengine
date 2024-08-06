@@ -78,7 +78,7 @@ interactions:
       content-type:
       - application/json
       user-agent:
-      - OpenAI/Python 1.37.2
+      - OpenAI/Python 1.38.0
       x-stainless-arch:
       - arm64
       x-stainless-async:
@@ -88,28 +88,28 @@ interactions:
       x-stainless-os:
       - MacOS
       x-stainless-package-version:
-      - 1.37.2
+      - 1.38.0
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.1
+      - 3.12.4
     method: POST
     uri: REDACTED
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA1yST4+bMBDF73yKkU/dKkRAsvmD1EqVtmpP7aU9dJcVGDMEb2Fs2abNKsp3rwyE
-        pHvhMO+94We9OQUATFYsBSYa7kSn23BvHx++7x4/Je7nF9nu4/U3+bD7uy6//lKC2MInVPmCwl1S
-        S6E63aKTapKFQe7Qb423SbLdJ3G0GYROVdj62EG7cK3CJErWYXQfxqsp2Cgp0LIUngIAgNPw9YhU
-        4ZGlEC0ukw6t5Qdk6WwCYEa1fsK4tdI6To4trqJQ5JAG6qIoXqyijE4ZeS1jdU/CPyBjKWSswhpq
-        Zbq+5e8aPObUdyWaFKwzdxB+BEkuzcZohUJ2vJ0s8MFrN5kFxJu7yWrQ9YbeJt5DkrHFW45cku6d
-        9TgT46hfN4+k0XH1eZex0XKe1xi0WpHF3L1qHJ2X1OwRimpZIYnBEC+jWeHW9p32GAPA0y3AjwZh
-        YANpgcMf3soKGjzy6Vkw/md5YXrO6JxRURRsauI8V9iqgzaq9HVT37bzvJYkbZMb5FaRr8s6pcf4
-        OQB4Hk6l/699po3qtMud+o3kF8araDsuZNfrvMr73SQ65Xh7E1tH98HEyOyrddjltaQDGm3keDu1
-        zlei2pWbRKxKFpyDfwAAAP//AwAA9DCyRAMAAA==
+        H4sIAAAAAAAAAwAAAP//XJJPj5swEMXvfIqRT90qRECy+YPUSpW2ak/tpT10lxUYMwRvYWzZps0q
+        ynevDISke+Ew773hZ705BQBMViwFJhruRKfbcG8fH77vHj8l7ucX2e7j9Tf5sPu7Lr/+UoLYwidU
+        +YLCXVJLoTrdopNqkoVB7tBvjbdJst0ncbQZhE5V2PrYQbtwrcIkStZhdB/GqynYKCnQshSeAgCA
+        0/D1iFThkaUQLS6TDq3lB2TpbAJgRrV+wri10jpOji2uolDkkAbqoiherKKMThl5LWN1T8I/IGMp
+        ZKzCGmplur7l7xo85tR3JZoUrDN3EH4ESS7NxmiFQna8nSzwwWs3mQXEm7vJatD1ht4m3kOSscVb
+        jlyS7p31OBPjqF83j6TRcfV5l7HRcp7XGLRakcXcvWocnZfU7BGKalkhicEQL6NZ4db2nfYYA8DT
+        LcCPBmFgA2mBwx/eygoaPPLpWTD+Z3lhes7onFFRFGxq4jxX2KqDNqr0dVPftvO8liRtkxvkVpGv
+        yzqlx/g5AHgeTqX/r32mjeq0y536jeQXxqtoOy5k1+u8yvvdJDrleHsTW0f3wcTI7Kt12OW1pAMa
+        beR4O7XOV6LalZtErEoWnIN/AAAA//8DAAD0MLJEAwAA
     headers:
       CF-RAY:
-      - 8ae0f935ccdbab18-YYZ
+      - 8aef4ba63ffaab6c-YYZ
       Connection:
       - keep-alive
       Content-Encoding:
@@ -117,15 +117,15 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 04 Aug 2024 19:32:27 GMT
+      - Tue, 06 Aug 2024 13:15:24 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=QiFfmNc4FnHEhfEKcJEkyoPLXl7ztICRpFdAMYQPqFnksepQsd5qRqTWEO2OTt5Cw1r83ZZcovwoyEXHZVeJZJBaCmntF0U2so4xLEPngY%2BSWwDWBrCK2NqYXn5tG64MNn9gC54ZmzDz"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=a%2BrvJFL1fs8PdkLKWvXxu2uVQQcw6uLBDhUpZnOugEpgGy%2B%2FJGr7Bdm9R81LwVLkUw47tYLQfqtymcJWRn4j0k0%2FbGd3oEwiJuW7afYqxFtWHQqsTBDCLAdx0VswbzWwVz8bj2yB%2FNfB"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Server-Timing:
-      - cfRequestDuration;dur=117.000103
+      - cfRequestDuration;dur=141.000032
       Strict-Transport-Security:
       - max-age=15552000; includeSubDomains; preload
       Transfer-Encoding:
@@ -160,7 +160,7 @@ interactions:
       content-type:
       - application/json
       user-agent:
-      - OpenAI/Python 1.37.2
+      - OpenAI/Python 1.38.0
       x-stainless-arch:
       - arm64
       x-stainless-async:
@@ -170,11 +170,11 @@ interactions:
       x-stainless-os:
       - MacOS
       x-stainless-package-version:
-      - 1.37.2
+      - 1.38.0
       x-stainless-runtime:
       - CPython
       x-stainless-runtime-version:
-      - 3.12.1
+      - 3.12.4
     method: POST
     uri: REDACTED
   response:
@@ -188,7 +188,7 @@ interactions:
         HJc3OYuCrR7Ys3U4Vp1QPRptxHpip6u8iXjTdZjFEMzBLwAAAP//AwC1YC2p8AEAAA==
     headers:
       CF-RAY:
-      - 8ae0f936ad8cab18-YYZ
+      - 8aef4ba738beab6c-YYZ
       Connection:
       - keep-alive
       Content-Encoding:
@@ -196,15 +196,15 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 04 Aug 2024 19:32:27 GMT
+      - Tue, 06 Aug 2024 13:15:24 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=YmAT%2BbAQQfP3yDURQRCR90nhVCK04g08J%2BUA7y4irNOVbximVigTzIlgK%2Fre7qTHpwp%2F%2F3xXHbkSwvUelKxmo6xteBQJPIlttvsme89CUouAKQhlysOXBGjuM95olSHzzPJ2t5YqAkBl"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=gul%2Bk1ArdjFYmv9K12A8sPkkio84yLv5UVxE488rmfHCXNCPXhBbLH%2BpQWVxqNujZQI1MQycf%2Bxva0xLmPwBN%2BW2M5YAMYAJc1MbXt1nxp7GhS8CDA8QFlOpx0IpVF6A932n%2BX74tXWd"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Server-Timing:
-      - cfRequestDuration;dur=144.000053
+      - cfRequestDuration;dur=198.999882
       Strict-Transport-Security:
       - max-age=15552000; includeSubDomains; preload
       Transfer-Encoding:

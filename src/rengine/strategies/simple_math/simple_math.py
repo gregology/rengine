@@ -25,7 +25,7 @@ class SimpleMath(Strategy):
         "Is the cube root of 48000 larger than pi to the power of pi?"
     ]
 
-    required_models = [['ollama/mistral-large:123b'], ['openai/gpt-4o']]
+    required_models = [['ollama/mistral-large:123b'], ['openai/gpt-4o-mini']]
 
     def load_template(self, template):
         script_dir = os.path.dirname(os.path.abspath(__file__))
